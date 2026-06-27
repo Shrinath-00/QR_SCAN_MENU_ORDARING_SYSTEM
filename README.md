@@ -6,10 +6,29 @@ This system features QR-code table verification signatures, live kitchen dashboa
 
 ---
 
+## Screenshots
+
+### 1. Minimalist Guest Landing Page
+![Aero Cafe Landing Page](frontend/assets/images/screenshots/landing_page.png)
+
+### 2. Contactless Digital Guest Menu
+![Digital Guest Menu](frontend/assets/images/screenshots/menu_page.png)
+
+### 3. Fresh Bakery & Desserts Subpage
+![Fresh Bakery Subpage](frontend/assets/images/screenshots/bakery_page.png)
+
+### 4. Combo Deals & Offers Subpage
+![Combo Offers Subpage](frontend/assets/images/screenshots/offers_page.png)
+
+### 5. Staff Secure Login Portal
+![Staff Login Portal](frontend/assets/images/screenshots/login_page.png)
+
+---
+
 ## Project Structure
 
 ```
-HotelManagement/
+QR_SCAN_MENU ORDARING SYSTEM/
 ├── backend/
 │   ├── config.py            # Pydantic Settings env loader
 │   ├── database.py          # SQLAlchemy Connection Pool & SQLite Fallback
