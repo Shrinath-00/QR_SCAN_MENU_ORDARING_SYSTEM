@@ -6,22 +6,49 @@ This system features QR-code table verification signatures, live kitchen dashboa
 
 ---
 
-## Screenshots
+## System Walkthrough (Step-by-Step)
 
-### 1. Minimalist Guest Landing Page
-![Aero Cafe Landing Page](frontend/assets/images/screenshots/landing_page.png)
+Here is how the complete guest dining and cafe management system works, step-by-step:
 
-### 2. Contactless Digital Guest Menu
+### Step 1: Guest Landing Page (Table Scan Entry)
+When a guest sits at a table and scans the unique QR code, they are greeted by a clean, modern landing page with luxury typography.
+![Guest Landing Page](frontend/assets/images/screenshots/landing_page.png)
+
+### Step 2: Browse the Digital Menu
+Guests click "Explore Menu" to browse categories (Coffee, Tea, Burgers, etc.) with dynamic Veg/Non-Veg filters.
 ![Digital Guest Menu](frontend/assets/images/screenshots/menu_page.png)
 
-### 3. Fresh Bakery & Desserts Subpage
+### Step 3: Fresh Bakery Subpage
+Guests can visit dedicated sub-menus, like the Fresh Bakery & Desserts page, to add sweets to their cart.
 ![Fresh Bakery Subpage](frontend/assets/images/screenshots/bakery_page.png)
 
-### 4. Combo Deals & Offers Subpage
+### Step 4: Special Combo Offers
+Guests can view curated deals and combo offers to quickly add value packages directly to their orders.
 ![Combo Offers Subpage](frontend/assets/images/screenshots/offers_page.png)
 
-### 5. Staff Secure Login Portal
+### Step 5: Staff Secure Login Portal
+Cafe staff (Admin, Waiters, Kitchen) authenticate securely via the centralized staff login portal.
 ![Staff Login Portal](frontend/assets/images/screenshots/login_page.png)
+
+### Step 6: Admin Dashboard & Analytics
+Admins view real-time sales revenue, kitchen activity charts, and pending payments at a glance.
+![Admin Dashboard](frontend/assets/images/screenshots/admin_dashboard.png)
+
+### Step 7: Live Order Manager Panel
+Waiters and admins track live active orders mapped by table columns, updating cooking status dynamically.
+![Order Manager Panel](frontend/assets/images/screenshots/order_manager.png)
+
+### Step 8: Processing Checkout & Payments
+When a guest requests the bill, the waiter selects the payment mode (Cash/UPI) via a secure dialog block.
+![Process Payment Dialog](frontend/assets/images/screenshots/process_payment.png)
+
+### Step 9: Automatic GST Invoice Generation
+The system generates a clean, printable GST-compliant receipt showing a breakdown of tax and total due.
+![Printable GST Invoice](frontend/assets/images/screenshots/print_invoice.png)
+
+### Step 10: Complete Order History Logs
+All successfully checked-out orders are archived for financial audit and records in the Order History panel.
+![Order History Logs](frontend/assets/images/screenshots/admin_history.png)
 
 ---
 
