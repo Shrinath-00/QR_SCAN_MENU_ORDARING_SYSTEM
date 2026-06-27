@@ -38,17 +38,17 @@ Admins view real-time sales revenue, kitchen activity charts, and pending paymen
 Waiters and admins track live active orders mapped by table columns, updating cooking status dynamically.
 ![Order Manager Panel](frontend/assets/images/screenshots/order_manager.png)
 
-### Step 8: Processing Checkout & Payments
+### Step 8: Complete Order History Logs
+All successfully checked-out orders are archived for financial audit and records in the Order History panel.
+![Order History Logs](frontend/assets/images/screenshots/admin_history.png)
+
+### Step 9: Processing Checkout & Payments
 When a guest requests the bill, the waiter selects the payment mode (Cash/UPI) via a secure dialog block.
 ![Process Payment Dialog](frontend/assets/images/screenshots/process_payment.png)
 
-### Step 9: Automatic GST Invoice Generation
+### Step 10: Automatic GST Invoice Generation
 The system generates a clean, printable GST-compliant receipt showing a breakdown of tax and total due.
 ![Printable GST Invoice](frontend/assets/images/screenshots/print_invoice.png)
-
-### Step 10: Complete Order History Logs
-All successfully checked-out orders are archived for financial audit and records in the Order History panel.
-![Order History Logs](frontend/assets/images/screenshots/admin_history.png)
 
 ---
 
