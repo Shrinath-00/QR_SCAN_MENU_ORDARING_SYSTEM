@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Invoice — AERO CAFE</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&family=DM+Mono:wght@400;500&family=Shippori+Mincho:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'></text></svg>">
+  <style>
+    :root {
+      --bg: #F3F4F6;
+      --text: #1F2937;
+      --text-dark: #000000;
+      --text-muted: #4B5563;
+      --border: #D1D5DB;
+      --border-dashed: #9CA3AF;
+      --brand: #E23744;
+      --brand-glow: rgba(226, 55, 68, 0.08);
+      --green: #10B981;
+      --green-light: rgba(16, 185, 129, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scrollbar-gutter: stable;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Space Grotesk', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 40px 16px 60px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .inv-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      width: 100%;
+      max-width: 380px;
+      padding: 32px 24px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 16px -8px rgba(0, 0, 0, 0.05);
+      position: relative;
+    }
+
+    /* Jagged receipt top/bottom indicator */
+    .inv-card::before, .inv-card::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background-size: 12px 6px;
+      background-repeat: repeat-x;
+      z-index: 10;
+    }
+    
+    .inv-card::before {
+      top: -6px;
+      background-image: linear-gradient(135deg, #ffffff 25%, transparent 25%), linear-gradient(225deg, #ffffff 25%, transparent 25%);
+    }
+
+    .inv-card::after {
+      bottom: -6px;
+      background-image: linear-gradient(45deg, #ffffff 25%, transparent 25%), linear-gradient(315deg, #ffffff 25%, transparent 25%);
+    }
+
+    .inv-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .inv-logo {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      margin: 0 auto 12px;
+      display: block;
+    }
+
+    .inv-name {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-dark);
+      margin-bottom: 4px;
+    }
+
+    .inv-address-line {
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.4;
+      margin-bottom: 2px;
+    }
+
+    .inv-divider {
+      border-top: 1px dashed var(--border-dashed);
+      margin: 16px 0;
+    }
+
+    .inv-divider-double {
+      border-top: 3px double var(--text-dark);
+      margin: 12px 0;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px 12px;
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+
+    .meta-item {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .inv-section-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Receipt Table column grid */
+    .receipt-row {
+      display: grid;
+      grid-template-columns: 1.8fr 0.4fr 0.8fr 1fr;
+      align-items: flex-start;
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      padding: 6px 0;
+      color: var(--text-dark);
+    }
+
+    .receipt-row.header {
+      font-weight: 700;
+      border-bottom: 1px dashed var(--text-dark);
+      padding-bottom: 8px;
+      margin-bottom: 8px;
+    }
+
+    .col-item { text-align: left; }
+    .col-qty { text-align: center; }
+    .col-price { text-align: right; }
+    .col-amt { text-align: right; }
+
+    .calc-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      padding: 4px 0;
+      color: var(--text-dark);
+    }
+
+    .calc-row.grand-total {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    .paid-badge-capsule {
+      margin-top: 20px;
+      border: 2px solid var(--green);
+      border-radius: 6px;
+      padding: 12px;
+      background: var(--green-light);
+      text-align: center;
+      font-family: 'DM Mono', monospace;
+      color: var(--green);
+    }
+
+    .paid-title {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      margin-bottom: 4px;
+    }
+
+    .paid-detail {
+      font-size: 12px;
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+
+    .inv-footer {
+      text-align: center;
+      margin-top: 24px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Barcode container */
+    .barcode-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .barcode-svg {
+      width: 160px;
+      height: 35px;
+      color: var(--text-dark);
+    }
+
+    .barcode-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 9px;
+      color: var(--text-muted);
+      margin-top: 4px;
+      letter-spacing: 1px;
+    }
+
+    /* Actions styling */
+    .action-container {
+      width: 100%;
+      max-width: 380px;
+      margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .pay-btn {
+      width: 100%;
+      padding: 14px;
+      background: var(--brand);
+      color: #FFFFFF;
+      border: none;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 12px rgba(226, 55, 68, 0.2);
+    }
+
+    .pay-btn:hover {
+      box-shadow: 0 6px 16px rgba(226, 55, 68, 0.3);
+    }
+
+    .pay-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .print-btn {
+      background: #FFFFFF;
+      color: var(--text);
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+
+    .print-btn:hover {
+      background: var(--bg);
+      border-color: var(--text-muted);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .pay-select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #FFFFFF;
+      color: var(--text);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 15px;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .pay-select:focus {
+      border-color: var(--brand);
+      box-shadow: 0 0 0 2px var(--brand-glow);
+    }
+
+    .error-msg {
+      text-align: center;
+      padding: 60px 20px;
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--brand);
+    }
+
+    @media print {
+      body {
+        background: #ffffff;
+        padding: 20px 0;
+        display: flex;
+        justify-content: center;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .inv-card {
+        border: 1px solid var(--border);
+        box-shadow: none;
+        max-width: 380px;
+        padding: 32px 24px;
+        background: #ffffff !important;
+      }
+      .inv-card::before, .inv-card::after {
+        display: block !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .action-container {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="inv-card" id="invoice">
+    <div class="error-msg">Loading...</div>
+  </div>
+
+  <script src="../config.js"></script>
+  <script src="invoice.js"></script>
+</body>
+</html>

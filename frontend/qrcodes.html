@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>QR Codes — Aero Cafe</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☕</text></svg>">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+  <script src="./assets/js/qrcode.min.js"></script>
+  <style>
+    * { font-family: 'Noto Sans JP', sans-serif; margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      margin: 0 !important;
+      padding: 0 !important;
+      width: 100% !important;
+      min-height: 100vh !important;
+      background-color: #f8f8f6 !important;
+    }
+    body {
+      padding: 30px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: flex-start !important;
+    }
+    h1 { text-align: center; letter-spacing: 4px; text-transform: uppercase; font-size: 18px; color: #1a1a1a; margin-bottom: 30px; width: 100%; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; width: 100%; max-width: 1000px; margin: 0 auto; }
+    .card { background: #fff; border: 0.5px solid #e0e0e0; border-radius: 4px; padding: 24px; text-align: center; }
+    .card .qr { display: flex; justify-content: center; margin-bottom: 14px; }
+    .table-name { font-size: 14px; letter-spacing: 3px; text-transform: uppercase; color: #1a1a1a; margin-bottom: 4px; font-weight: 500; }
+    .hotel-name { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #C0392B; }
+    @media print {
+      html, body { background-color: #fff !important; }
+      body { padding: 0 !important; }
+      .card { break-inside: avoid; border: 1px dashed #ccc; }
+    }
+  </style>
+</head>
+<body>
+
+<h1 class="cafe-name-heading">Table QR Codes</h1>
+
+<div class="grid" id="qrGrid"></div>
+
+<script src="./config.js"></script>
+<script>
+  const grid = document.getElementById("qrGrid");
+  const baseUrl = window.location.href.substring(0, window.location.href.lastIndexOf('/'));
+
+  CONFIG.loadCafeConfig().then(data => {
+    if (!data) return;
+    
+    document.querySelector(".cafe-name-heading").textContent = `${data.cafe_name} — Table QR Codes`;
+    const finalBaseUrl = data.frontend_url || baseUrl;
+    const qrUrl = `${CONFIG.API_URL}/api/qr-urls?base_url=${encodeURIComponent(finalBaseUrl)}&total_tables=${data.total_tables}`;
+
+    fetch(qrUrl, {
+      headers: {
+        "ngrok-skip-browser-warning": "true"
+      }
+    })
+      .then(r => {
+        if (!r.ok) {
+          throw new Error("HTTP error " + r.status);
+        }
+        return r.json();
+      })
+      .then(dataResponse => {
+        dataResponse.tables.forEach(t => {
+          const card = document.createElement("div");
+          card.className = "card";
+          card.innerHTML = `
+            <div class="qr" id="qr-${t.table}"></div>
+            <div class="table-name">Table ${t.table}</div>
+            <div class="hotel-name">${data.cafe_name}</div>
+          `;
+          grid.appendChild(card);
+
+          new QRCode(document.getElementById(`qr-${t.table}`), {
+            text: t.url,
+            width: 160,
+            height: 160,
+            colorDark: "#1a1a1a",
+            colorLight: "#ffffff"
+          });
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+        grid.innerHTML = '<p style="text-align:center;color:red;">QR codes could not load. Is the backend server running?</p>';
+      });
+  });
+</script>
+
+</body>
+</html>

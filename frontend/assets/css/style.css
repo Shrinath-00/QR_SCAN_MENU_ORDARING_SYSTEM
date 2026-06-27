@@ -1,0 +1,381 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap');
+ 
+/* ─── Design Tokens ─────────────────────────────────────────── */
+:root {
+  --ink:        #111111;
+  --ink-soft:   #3a3a3a;
+  --mist:       #f5f4f0;
+  --surface:    #ffffff;
+  --border:     #e2e0db;
+  --border-mid: #c8c6c0;
+  --red:        #C0392B;
+  --red-dark:   #9b2e21;
+  --red-glow:   rgba(192, 57, 43, 0.12);
+ 
+  --radius-sm:  2px;
+  --radius-md:  4px;
+ 
+  --ease:       cubic-bezier(0.22, 1, 0.36, 1);
+  --t-fast:     160ms;
+  --t-mid:      240ms;
+}
+ 
+/* ─── Base ──────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+ 
+body {
+  background: var(--mist);
+  color: var(--ink);
+  padding-bottom: 96px;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+ 
+/* ─── Navbar ────────────────────────────────────────────────── */
+.navbar {
+  background: var(--ink) !important;
+  padding: 0 24px !important;
+  height: 56px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+ 
+.navbar-brand {
+  letter-spacing: 5px;
+  font-size: 13px !important;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: #ffffff !important;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: opacity var(--t-fast) var(--ease);
+}
+ 
+.navbar-brand:hover {
+  opacity: 0.75;
+}
+ 
+.navbar-brand::before {
+  content: '';
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--red);
+  flex-shrink: 0;
+  box-shadow: 0 0 0 3px var(--red-glow);
+}
+
+/* ─── Logo Wrap ─────────────────────────────────────────────── */
+.logo-wrap {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 8px;
+}
+
+.logo-wrap img {
+  width: 56px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 16px rgba(0,0,0,0.08));
+}
+ 
+/* ─── Category Tabs ─────────────────────────────────────────── */
+.nav-pills {
+  border: 1px solid var(--border-mid);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  gap: 0 !important;
+  background: var(--surface);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+ 
+.nav-link {
+  border-radius: 0 !important;
+  font-size: 10px !important;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: #888 !important;
+  padding: 10px 16px !important;
+  position: relative;
+  transition:
+    color var(--t-fast) var(--ease),
+    background var(--t-fast) var(--ease);
+}
+ 
+.nav-link:not(.active):hover {
+  color: var(--ink) !important;
+  background: var(--mist) !important;
+}
+ 
+.nav-link.active {
+  background: var(--ink) !important;
+  color: #ffffff !important;
+}
+ 
+/* ─── Section Heading ───────────────────────────────────────── */
+.text-muted {
+  font-size: 10px !important;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: var(--red) !important;
+  font-weight: 500;
+  font-family: 'DM Mono', monospace;
+}
+ 
+/* ─── Menu Cards ────────────────────────────────────────────── */
+.card {
+  border-radius: var(--radius-sm) !important;
+  border: 1px solid var(--border) !important;
+  background: var(--surface);
+  transition:
+    border-color var(--t-fast) var(--ease),
+    box-shadow var(--t-mid) var(--ease),
+    transform var(--t-mid) var(--ease);
+  will-change: transform, box-shadow;
+}
+ 
+.card:hover {
+  border-color: var(--border-mid) !important;
+  box-shadow:
+    0 2px 8px rgba(0,0,0,0.06),
+    0 1px 2px rgba(0,0,0,0.04);
+  transform: translateY(-1px);
+}
+ 
+.card-body {
+  padding: 16px 18px !important;
+}
+ 
+.card strong {
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  color: var(--ink);
+  font-weight: 500;
+  line-height: 1.4;
+}
+ 
+.card .description,
+.card p {
+  font-size: 12px;
+  color: #888;
+  letter-spacing: 0.2px;
+  line-height: 1.6;
+  margin-top: 4px;
+  font-weight: 300;
+}
+ 
+/* ─── Price ─────────────────────────────────────────────────── */
+.text-success {
+  color: var(--ink-soft) !important;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  font-family: 'DM Mono', monospace;
+  font-weight: 500;
+}
+ 
+/* ─── ADD Button ────────────────────────────────────────────── */
+.btn-outline-primary {
+  border-radius: var(--radius-sm) !important;
+  border: 1px solid var(--border-mid) !important;
+  color: var(--ink) !important;
+  font-size: 10px !important;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  font-weight: 500;
+  background: transparent !important;
+  padding: 7px 14px !important;
+  transition:
+    background var(--t-fast) var(--ease),
+    color var(--t-fast) var(--ease),
+    border-color var(--t-fast) var(--ease),
+    transform 80ms var(--ease);
+  position: relative;
+  overflow: hidden;
+}
+ 
+.btn-outline-primary:hover {
+  background: var(--ink) !important;
+  border-color: var(--ink) !important;
+  color: #fff !important;
+}
+ 
+.btn-outline-primary:active {
+  transform: scale(0.97);
+}
+ 
+/* ─── Cart Bar ──────────────────────────────────────────────── */
+.cart-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--ink);
+  padding: 14px 24px;
+  z-index: 1000;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+ 
+.cart-bar strong {
+  color: rgba(255,255,255,0.45);
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+ 
+.cart-bar small {
+  color: #ffffff;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+  font-family: 'DM Mono', monospace;
+}
+ 
+/* ─── Checkout Button ───────────────────────────────────────── */
+.btn-success {
+  background: var(--red) !important;
+  border: none !important;
+  border-radius: var(--radius-sm) !important;
+  font-size: 10px !important;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  font-weight: 500;
+  padding: 11px 22px !important;
+  transition:
+    background var(--t-fast) var(--ease),
+    transform 80ms var(--ease),
+    box-shadow var(--t-fast) var(--ease);
+  box-shadow: 0 1px 4px rgba(192, 57, 43, 0.3);
+}
+ 
+.btn-success:hover {
+  background: var(--red-dark) !important;
+  box-shadow: 0 3px 12px rgba(192, 57, 43, 0.4);
+}
+ 
+.btn-success:active {
+  transform: scale(0.97);
+  box-shadow: none;
+}
+ 
+/* ─── Badge ─────────────────────────────────────────────────── */
+.badge {
+  background: var(--red) !important;
+  border-radius: var(--radius-sm) !important;
+  letter-spacing: 2px;
+  font-size: 10px !important;
+  font-weight: 500;
+  padding: 4px 10px !important;
+}
+ 
+/* ─── Modal ─────────────────────────────────────────────────── */
+.modal-content {
+  border-radius: var(--radius-md) !important;
+  border: 1px solid var(--border) !important;
+  box-shadow:
+    0 20px 60px rgba(0,0,0,0.18),
+    0 8px 24px rgba(0,0,0,0.10) !important;
+  overflow: hidden;
+}
+ 
+.modal-header {
+  background: var(--ink);
+  color: #ffffff;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding: 18px 22px !important;
+}
+ 
+.modal-header h5 {
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  font-size: 12px !important;
+  font-weight: 500;
+  margin: 0;
+}
+ 
+.modal-body {
+  padding: 22px !important;
+}
+ 
+.modal-footer {
+  padding: 16px 22px !important;
+  border-top: 1px solid var(--border);
+}
+ 
+.modal-footer .btn-success {
+  width: 100%;
+  padding: 14px !important;
+  font-size: 11px !important;
+  letter-spacing: 3px;
+}
+ 
+.btn-close {
+  filter: invert(1) opacity(0.6);
+  transition: opacity var(--t-fast) var(--ease);
+}
+ 
+.btn-close:hover {
+  filter: invert(1) opacity(1);
+}
+ 
+/* ─── Quantity Controls ─────────────────────────────────────── */
+.qty-control {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--border-mid);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+ 
+.qty-control button {
+  background: transparent;
+  border: none;
+  width: 32px;
+  height: 32px;
+  font-size: 16px;
+  line-height: 1;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background var(--t-fast) var(--ease);
+}
+ 
+.qty-control button:hover {
+  background: var(--mist);
+}
+ 
+.qty-control span {
+  min-width: 28px;
+  text-align: center;
+  font-size: 13px;
+  font-family: 'DM Mono', monospace;
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  padding: 6px 4px;
+}
+ 
+/* ─── Divider ────────────────────────────────────────────────── */
+.menu-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 20px 0;
+}
+ 
+/* ─── Scrollbar (webkit) ────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--border-mid);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #aaa;
+}

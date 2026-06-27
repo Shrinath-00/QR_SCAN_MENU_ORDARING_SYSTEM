@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome | Aero Cafe</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Cinzel:wght@400;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Italiana&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="./config.js?v=20260625_v5"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#E23744',
+            brandRed: '#E23744',
+            brandOrange: '#f43f5e',
+            bgLight: '#FFFFFF', // Plain white background
+          },
+          fontFamily: {
+            sans: ['Space Grotesk', 'sans-serif'],
+            body: ['Plus Jakarta Sans', 'sans-serif'],
+            playfair: ['Playfair Display', 'serif'],
+            cinzel: ['Cinzel', 'serif'],
+            cormorant: ['Cormorant Garamond', 'serif'],
+            italiana: ['Italiana', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: #FFFFFF; /* Plain solid white background */
+      color: #1A1A1A;
+      -webkit-tap-highlight-color: transparent;
+      overflow-x: hidden;
+    }
+    .font-jakarta {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .font-playfair {
+      font-family: 'Playfair Display', serif;
+    }
+    .font-cinzel {
+      font-family: 'Cinzel', serif;
+    }
+    .font-cormorant {
+      font-family: 'Cormorant Garamond', serif;
+    }
+    .font-italiana {
+      font-family: 'Italiana', serif;
+    }
+    .premium-card {
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      border: 1px solid rgba(226, 55, 68, 0.06);
+    }
+    .premium-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(226, 55, 68, 0.15);
+      box-shadow: 0 12px 24px rgba(226, 55, 68, 0.04);
+    }
+    .hero-btn {
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    .hero-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 20px rgba(226, 55, 68, 0.2);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-primary selection:text-white">
+
+  <!-- Header -->
+  <header class="w-full border-b border-gray-100 bg-white sticky top-0 z-50">
+    <div class="max-w-4xl mx-auto flex justify-between items-center px-6 py-4">
+      <div class="flex items-center gap-2 text-primary">
+        <i class="fa-solid fa-mug-hot text-base"></i>
+        <span class="font-bold text-base tracking-[0.25em] uppercase cafe-name font-cinzel text-gray-900">AERO CAFE</span>
+      </div>
+      <div class="text-xs font-black uppercase text-gray-400 tracking-widest font-jakarta">Guest Portal</div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-1 w-full max-w-4xl mx-auto px-6 py-12 flex flex-col gap-16 justify-center">
+
+    <!-- Hero Showcase Section -->
+    <section class="text-center flex flex-col items-center gap-6 py-8">
+      <!-- Centered Logo Container -->
+      <div class="relative w-44 h-44 flex items-center justify-center bg-white rounded-full border-2 border-gray-100/90 shadow-lg mb-2 transition-transform duration-500 hover:scale-105">
+        <img src="assets/images/caffe.png" alt="Cafe Logo" class="w-38 h-38 object-contain">
+      </div>
+      
+      <!-- Welcome Headline -->
+      <div class="space-y-2">
+        <span class="text-xs font-black text-primary uppercase tracking-widest font-jakarta">Welcome to Experience</span>
+        <h1 class="text-4xl sm:text-6xl font-bold tracking-[0.05em] uppercase text-gray-900 cafe-name font-cinzel">Aero Cafe</h1>
+        <p class="text-sm text-gray-400 font-medium font-jakarta tracking-wide max-w-sm mx-auto">Artisanal Brews, Freshly Prepared Delights, and Quick Table Ordering Service.</p>
+      </div>
+
+      <!-- Action Button -->
+      <div class="w-full max-w-xs mx-auto mt-4">
+        <a href="#" onclick="goToMenu(event)" class="hero-btn w-full inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary hover:bg-brandOrange text-white rounded-2xl text-xs font-black uppercase tracking-widest active:scale-98">
+          Explore Menu &nbsp;<i class="fa-solid fa-arrow-right text-xs"></i>
+        </a>
+      </div>
+    </section>
+
+    <!-- Curated Specialties Section -->
+    <section class="space-y-6">
+      <div class="text-center space-y-1">
+        <span class="text-[10px] font-black text-primary uppercase tracking-widest font-jakarta">Curated Highlights</span>
+        <h2 class="text-xl font-black text-gray-900 tracking-tight">Our Cafe Specialties</h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+        <!-- Espresso -->
+        <div class="bg-white rounded-2xl p-5 premium-card flex flex-col items-center text-center gap-3">
+          <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary text-sm">
+            <i class="fa-solid fa-mug-hot"></i>
+          </div>
+          <div>
+            <h3 class="text-sm font-bold text-gray-900 uppercase">Espresso</h3>
+            <p class="text-[11px] text-gray-400 font-medium font-jakarta mt-0.5">Rich & intense aromatic shot</p>
+          </div>
+          <span class="text-xs font-black text-primary mt-1">₹80</span>
+        </div>
+
+        <!-- Cappuccino -->
+        <div class="bg-white rounded-2xl p-5 premium-card flex flex-col items-center text-center gap-3">
+          <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary text-sm">
+            <i class="fa-solid fa-wheat-awn"></i>
+          </div>
+          <div>
+            <h3 class="text-sm font-bold text-gray-900 uppercase">Cappuccino</h3>
+            <p class="text-[11px] text-gray-400 font-medium font-jakarta mt-0.5">Creamy espresso & microfoam</p>
+          </div>
+          <span class="text-xs font-black text-primary mt-1">₹120</span>
+        </div>
+
+        <!-- Masala Chai -->
+        <div class="bg-white rounded-2xl p-5 premium-card flex flex-col items-center text-center gap-3">
+          <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary text-sm">
+            <i class="fa-solid fa-leaf"></i>
+          </div>
+          <div>
+            <h3 class="text-sm font-bold text-gray-900 uppercase">Masala Chai</h3>
+            <p class="text-[11px] text-gray-400 font-medium font-jakarta mt-0.5">Spiced traditional Indian milk tea</p>
+          </div>
+          <span class="text-xs font-black text-primary mt-1">₹40</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dynamic Contact & Hours Section -->
+    <section class="border-t border-gray-100 pt-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-center sm:text-left text-xs font-medium font-jakarta text-gray-400">
+        <div class="space-y-1">
+          <span class="text-[10px] font-black text-gray-900 uppercase tracking-widest font-sans">Visit Us</span>
+          <p class="cafe-address">Sector 5, Coffee District, Kolhapur, India</p>
+          <p class="cafe-phone text-primary font-bold">+91 7028952090</p>
+        </div>
+        <div class="space-y-1 sm:text-right">
+          <span class="text-[10px] font-black text-gray-900 uppercase tracking-widest font-sans">Opening Hours</span>
+          <p>Monday – Sunday</p>
+          <p class="text-gray-900 font-bold">8:00 AM – 10:00 PM</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full border-t border-gray-100 bg-white py-6 text-center text-[10px] text-gray-400 font-medium font-jakarta">
+    <p>© <span class="cafe-name">Aero Cafe</span>. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      CONFIG.loadCafeConfig();
+    });
+
+    function goToMenu(e) {
+      if (e) e.preventDefault();
+      const search = window.location.search;
+      const cacheBuster = 'v=' + Date.now();
+      const newSearch = search ? (search + '&' + cacheBuster) : ('?' + cacheBuster);
+      window.location.href = 'MenuPage/menu.html' + newSearch;
+    }
+  </script>
+
+</body>
+</html>
